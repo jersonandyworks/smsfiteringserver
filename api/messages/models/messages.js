@@ -8,6 +8,7 @@
  const Filter = require('bad-words');
  const filter = new Filter();
 console.log("fuck!")
+// NOTE: .*(?:(\d)\1{4}) - for number has repititions.
 module.exports = {
     lifecycles:{
         async beforeCreate(data){

@@ -1,0 +1,34 @@
+{
+  "kind": "collectionType",
+  "collectionName": "uploads",
+  "info": {
+    "name": "uploads",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "createdAt": {
+      "type": "datetime"
+    },
+    "spreadsheet": {
+      "collection": "file",
+      "via": "related",
+      "allowedTypes": [
+        "files"
+      ],
+      "plugin": "upload",
+      "required": false
+    },
+    "message": {
+      "model": "messages",
+      "via": "upload"
+    },
+    "filename": {
+      "type": "string"
+    }
+  }
+}
