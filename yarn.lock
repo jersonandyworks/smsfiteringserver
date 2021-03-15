@@ -9264,6 +9264,11 @@ source-map@^0.6.0, source-map@^0.6.1, source-map@~0.6.0, source-map@~0.6.1:
   resolved "https://registry.yarnpkg.com/source-map/-/source-map-0.6.1.tgz#74722af32e9614e9c287a8d0bbde48b5e2f1a263"
   integrity sha512-UjgapumWlbMhkBgzT7Ykc5YXUT46F0iKu8SGXq0bcwP5dz/h0Plj6enJqjz1Zbq2l5WaqYnrVbwWOWMyF3F47g==
 
+spam-check@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/spam-check/-/spam-check-1.0.0.tgz#14a76d3e8ceec37a99f4c9e1fd15a5dea7eac67a"
+  integrity sha512-MDFM5e7+JbuBU8QFjJuqRlkcyJlbX+zjpyjJiaV2z2cX0Kc0KOfuBaYGu9Ez/t8V66PE7RdQ3GNmjL8DIEtUqg==
+
 sparse-bitfield@^3.0.3:
   version "3.0.3"
   resolved "https://registry.yarnpkg.com/sparse-bitfield/-/sparse-bitfield-3.0.3.tgz#ff4ae6e68656056ba4b3e792ab3334d38273ca11"

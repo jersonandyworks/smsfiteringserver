@@ -23,12 +23,12 @@
       "plugin": "upload",
       "required": false
     },
+    "filename": {
+      "type": "string"
+    },
     "message": {
       "model": "messages",
       "via": "upload"
-    },
-    "filename": {
-      "type": "string"
     }
   }
 }

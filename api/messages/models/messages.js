@@ -12,10 +12,10 @@ console.log("fuck!")
 module.exports = {
     lifecycles:{
         async beforeCreate(data){
-            const filteredMessage = filter.clean(data.message)
-            const filteredName = filter.clean(data.name);
-            data.name = filteredName;
-            data.message =  filteredMessage;
+            // const filteredMessage = filter.clean(data.message)
+            // const filteredName = filter.clean(data.name);
+            // data.name = filteredName;
+            // data.message =  filteredMessage;
         }
     }
 };

@@ -15,6 +15,7 @@
     "exceljs": "^4.2.0",
     "knex": "<0.20.0",
     "read-excel-file": "^5.0.0",
+    "spam-check": "^1.0.0",
     "sqlite3": "5.0.0",
     "strapi": "3.5.0",
     "strapi-admin": "3.5.0",
