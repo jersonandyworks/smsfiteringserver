@@ -26,9 +26,8 @@
     "filename": {
       "type": "string"
     },
-    "message": {
-      "model": "messages",
-      "via": "upload"
+    "messages": {
+      "collection": "messages"
     },
     "list_name": {
       "type": "string"

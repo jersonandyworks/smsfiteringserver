@@ -17,8 +17,15 @@ module.exports = {
     lifecycles:{
         async beforeCreate(data){
             console.log("uploads data: ", data);
+            
+        },
+
+        async afterCreate(data){
+            console.log("data: ",data)
+
             const excelFilePath = appRoot + data.spreadsheet[0].url;
             await readXlsxFile(fs.createReadStream(excelFilePath)).then(async (rows) => {
+                const messages = [];
                for(let i=0; i < rows.length; i++){
                    const name = rows[i][0];
                    const intials = rows[i][1];
@@ -26,6 +33,8 @@ module.exports = {
                    const link = rows[i][3];
                    const filteredMessage = filter.clean(name)
                    const filteredName = filter.clean(name);
+
+                   console.log('filteredName: ', filteredName);
 
                    const expressionNumber = `^[0-9]*$`
                    const reNumber = new RegExp(expressionNumber,'u');
@@ -36,6 +45,7 @@ module.exports = {
                    
 
                    if(reNumber.test(contact) && reAlphabets.test(name)){
+                       
                     const expression = `.*(?:(\\d)\\1{4})`;
                     const re = new RegExp(expression,'g');
                     const filteredContact = re.test(contact); //No repeating numbers
@@ -51,11 +61,16 @@ module.exports = {
                    
                     // && !reAsterisk.test(filteredName) && ! reRepeat.test(name)
                     if(!filteredContact){
+                        
                         if(reAsterisk.test(filteredName) === false){
-                            if(reRepeat.test(filteredName) === false){
+                            console.log("reRepeat.test(filteredName): ", reRepeat.test(filteredName) );
+                            
+                            if(reRepeat.test(filteredName) === true){
+                                console.log("reRepeat.test(filteredName)");
                                 console.log("reAsterisk: " + filteredName + " " +  reAsterisk.test(filteredName))
                                 console.log("reRepeat: " + filteredName + " " + reRepeat.test(filteredName))
                                 const isMessageExists = await strapi.query('messages').findOne({ contact_number: contact });
+                                
                                 if(!isMessageExists){
                                     //CREATE AN ENTRY FOR MESSAGES
                                     const messageCreated= await strapi.query("messages").create({
@@ -63,9 +78,12 @@ module.exports = {
                                         message: "test",
                                         contact_number: contact,
                                         created_at: data.createdAt,
-                                        upload: data.spreadsheet[0].id
+                                        upload: data.id
                                     })
-                                    data.message = messageCreated.id
+
+                                   messages.push(messageCreated);
+
+                                   
                                 }
                             }
                             
@@ -74,7 +92,18 @@ module.exports = {
                    }//end if test contact
                    console.log("-------------------------------------------------------------------------")
                }//end loop
+
+               console.log("messages id: ", messages);
+
+               data.messages = messages;
+
+               await strapi.query("uploads").update(data.id, {messages: messages})
               })
+        },
+
+        async afterUpdate(data){
+            console.log("UPDATE LIFECYCLE");
+            console.log("data: ", data);
         }
     }
 };
