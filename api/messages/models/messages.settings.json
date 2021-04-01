@@ -27,7 +27,8 @@
       "type": "datetime"
     },
     "upload": {
-      "model": "uploads"
+      "model": "uploads",
+      "via": "messages"
     }
   }
 }

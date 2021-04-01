@@ -26,11 +26,12 @@
     "filename": {
       "type": "string"
     },
-    "messages": {
-      "collection": "messages"
-    },
     "list_name": {
       "type": "string"
+    },
+    "messages": {
+      "via": "upload",
+      "collection": "messages"
     }
   }
 }

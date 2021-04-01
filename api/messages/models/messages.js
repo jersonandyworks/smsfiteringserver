@@ -11,11 +11,13 @@ console.log("fuck!")
 // NOTE: .*(?:(\d)\1{4}) - for number has repititions.
 module.exports = {
     lifecycles:{
-        async beforeCreate(data){
+        async afterCreate(data){
             // const filteredMessage = filter.clean(data.message)
             // const filteredName = filter.clean(data.name);
             // data.name = filteredName;
             // data.message =  filteredMessage;
+
+            console.log("messages created: ", data)
         }
     }
 };
