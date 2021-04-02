@@ -30,8 +30,11 @@
       "type": "string"
     },
     "messages": {
-      "via": "upload",
-      "collection": "messages"
+      "collection": "messages",
+      "via": "upload"
+    },
+    "url": {
+      "type": "string"
     }
   }
 }

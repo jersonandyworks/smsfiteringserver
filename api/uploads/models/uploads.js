@@ -80,17 +80,38 @@ module.exports = {
 
                     if (!isMessageExists) {
                       //CREATE AN ENTRY FOR MESSAGES
+                      let listName = "" ;
+                      const url = link;
+                      let cleanLink = url;
+                     
+                      if(data.list_name !== ""){
+                        listName = "list=" + data.list_name;
+                        console.log(url.split("&"));
+                        const urlArray = url.split("&");
+                        console.log(urlArray);
+                        urlArray.pop();
+                        urlArray.push(listName);
+                        console.log(urlArray);
+                        console.log(urlArray.join("&"));
+                        cleanLink = urlArray.join("&");
+                      }
+                      
+                      
+
+                     
+
                       const messageCreated = await strapi
                         .query("messages")
                         .create({
                           name: filteredName + " " + intials,
                           message: "test",
                           contact_number: contact,
+                          link: cleanLink,
                           created_at: data.createdAt,
                           upload: data.id,
                         });
 
-                         messages.push(messageCreated);
+                      messages.push(messageCreated);
                     }
                   }
                 }
@@ -100,20 +121,19 @@ module.exports = {
               "-------------------------------------------------------------------------"
             );
           } //end loop
-
-          console.log("messuplages id: ", messages);
-
-       
-          // data.messages = messages;
-          // await strapi.query("uploads").update(data.id,{
-          //   messages: messages
-          // })
         }
       );
     },
 
-    async afterUpdate(data) {
-
+    async afterDelete(result, params) {
+      const uploadId = params.id;
+      const messages = result.messages;
+      const messageIDs = [];
+      for (let i = 0; i < messages.length; i++) {
+        messageIDs.push(messages[i].id);
+      }
+      console.log("messageIDs: ", messageIDs);
+      await strapi.query("messages").delete({ id_in: messageIDs });
     },
   },
 };
