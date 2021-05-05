@@ -20,12 +20,6 @@
     "contact_number": {
       "type": "string"
     },
-    "createdAt": {
-      "type": "datetime"
-    },
-    "updatedAt": {
-      "type": "datetime"
-    },
     "upload": {
       "via": "messages",
       "model": "uploads"

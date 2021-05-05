@@ -11,18 +11,6 @@
     "draftAndPublish": true
   },
   "attributes": {
-    "createdAt": {
-      "type": "datetime"
-    },
-    "spreadsheet": {
-      "collection": "file",
-      "via": "related",
-      "allowedTypes": [
-        "files"
-      ],
-      "plugin": "upload",
-      "required": false
-    },
     "filename": {
       "type": "string"
     },
@@ -35,6 +23,9 @@
     },
     "url": {
       "type": "string"
+    },
+    "excelrows": {
+      "type": "json"
     }
   }
 }
